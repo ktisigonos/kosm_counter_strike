@@ -130,7 +130,7 @@ const Fixture = struct {
             .plan = &fixture.plan,
             .diagnostics = &fixture.diagnostics,
             .warnings = &fixture.warnings,
-            .app = "cs16",
+            .app = "counter_strike_1_6",
         };
     }
 
@@ -180,4 +180,14 @@ test "every field names a key of the scheme" {
     try testing.expectEqualStrings("ControlDarkBG", comptime keyName("control_dark_bg"));
     try testing.expectEqualStrings("SelectionBG2", comptime keyName("selection_bg2"));
     try testing.expectEqualStrings("DisabledText1", comptime keyName("disabled_text1"));
+}
+
+test "the backgrounds take the theme's background alpha, the text stays opaque" {
+    var theme = kosm.Theme.from(.{ .black = kosm.hex("041c26"), .white = kosm.hex("a3c5cc") }, .dark);
+    theme.background_alpha = 0.5;
+    const colors = from(theme).colors;
+    inline for (.{ colors.control_bg, colors.control_dark_bg, colors.window_bg, colors.selection_bg, colors.list_bg }) |background| {
+        try testing.expectEqual(0.5, background.?.alpha);
+    }
+    try testing.expectEqual(1, colors.base_text.?.alpha);
 }

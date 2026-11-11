@@ -1,4 +1,4 @@
-# kosm_cs16
+# kosm_counter_strike_1_6
 
 Counter-Strike 1.6 for kosm: the colors and font of the game's menus (VGUI's
 `TrackerScheme.res`), set in place. Every other line of the scheme stays as it is, and each set
@@ -9,7 +9,8 @@ apply again afterwards.
 
 `from(theme)` sets text from white (black in light mode), brighter when selected and dimmer by
 the theme's emphasis; backgrounds from black (white in light mode) with its surface steps;
-borders white and cyan. The title bar and the disabled overlay stay transparent, as shipped.
+borders white and cyan. The backgrounds take the theme's `background_alpha`, so the menus are
+translucent like the rest of the kosmos. The title bar and the disabled overlay stay transparent, as shipped.
 The font is left alone.
 
 ## Fields
