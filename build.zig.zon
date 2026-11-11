@@ -1,7 +1,7 @@
 .{
-    .name = .kosm_cs16,
+    .name = .kosm_counter_strike_1_6,
     .version = "0.0.0",
-    .fingerprint = 0x949e2b27cda8cb2c, // Changing this has security and trust implications.
+    .fingerprint = 0xc6efc4f8ef8aa21, // Changing this has security and trust implications.
     .minimum_zig_version = "0.17.0",
     .dependencies = .{
         .kosm_keyvalues = .{
