@@ -130,7 +130,7 @@ const Fixture = struct {
             .plan = &fixture.plan,
             .diagnostics = &fixture.diagnostics,
             .warnings = &fixture.warnings,
-            .app = "counter_strike_1_6",
+            .app = "counter_strike",
         };
     }
 

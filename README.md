@@ -1,4 +1,4 @@
-# kosm_counter_strike_1_6
+# kosm_counter_strike
 
 Counter-Strike 1.6 for kosm: the colors and font of the game's menus (VGUI's
 `TrackerScheme.res`), set in place. Every other line of the scheme stays as it is, and each set
