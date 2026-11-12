@@ -7,9 +7,9 @@ color's key must already be in it.
 The scheme belongs to the game: Steam may restore it when it verifies or updates the game, so
 apply again afterwards.
 
-`from(theme)` sets text from white (black in light mode), brighter when selected and dimmer by
-the theme's emphasis; backgrounds from black (white in light mode) with its surface steps;
-borders white and cyan. The backgrounds take the theme's `background_alpha`, so the menus are
+`from(theme)` sets text from the theme's foreground role, brighter when selected and dimmer by
+the theme's emphasis; backgrounds from the background role with its surface steps; borders the
+foreground and the accent. The backgrounds take the theme's `background_alpha`, so the menus are
 translucent like the rest of the kosmos. The title bar and the disabled overlay stay transparent, as shipped.
 The font is left alone.
 

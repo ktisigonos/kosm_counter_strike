@@ -19,14 +19,13 @@ font: ?[]const u8 = null,
 /// The colors of `Scheme.Colors`.
 pub const Colors = @import("Colors.zig");
 
-/// Colors from the theme: text white (black in light mode), brighter when selected and dimmer
-/// by the theme's emphasis; backgrounds black (white in light mode) with its surface steps;
-/// borders white and cyan. The title bar and the disabled overlay stay transparent, as shipped.
+/// Colors from the theme: text from the foreground role, brighter when selected and dimmer
+/// by the theme's emphasis; backgrounds from the background role with its surface steps;
+/// borders the foreground and the accent. The title bar and the disabled overlay stay transparent, as shipped.
 pub fn from(theme: kosm.Theme) App {
-    const palette = theme.palette;
     const variations = theme.variations;
-    const foreground = if (theme.mode == .dark) palette.white else palette.black;
-    const background = theme.asBackground(if (theme.mode == .dark) palette.black else palette.white);
+    const foreground = theme.roles.foreground;
+    const background = theme.asBackground(theme.roles.background);
     const bright = variations.lightness.bright.apply(foreground);
     const raised = variations.surface.raised.apply(background);
     return .{ .colors = .{
@@ -50,8 +49,8 @@ pub fn from(theme: kosm.Theme) App {
         .slider_tick_color = foreground,
         .slider_track_color = variations.surface.sunken.apply(background),
         .border_bright = foreground,
-        .border_dark = palette.cyan,
-        .border_selection = variations.lightness.dark.apply(palette.cyan),
+        .border_dark = theme.roles.accent,
+        .border_selection = variations.lightness.dark.apply(theme.roles.accent),
     } };
 }
 
@@ -183,7 +182,7 @@ test "every field names a key of the scheme" {
 }
 
 test "the backgrounds take the theme's background alpha, the text stays opaque" {
-    var theme = kosm.Theme.from(.{ .black = kosm.hex("041c26"), .white = kosm.hex("a3c5cc") }, .dark);
+    var theme = kosm.Theme.from(.{ .palette = .{ .black = kosm.hex("041c26"), .white = kosm.hex("a3c5cc") }, .mode = .dark });
     theme.background_alpha = 0.5;
     const colors = from(theme).colors;
     inline for (.{ colors.control_bg, colors.control_dark_bg, colors.window_bg, colors.selection_bg, colors.list_bg }) |background| {
